@@ -6,31 +6,6 @@ import java.util.Random;
 
 public class BoothAlgorithm {
 	
-	public static void main(String args[])
-	{
-		//multiply(232, -232, false);
-		//multiply(-232, 232, false);
-		
-		
-		
-		Random rand = new Random();
-		int count = 0;
-		for(int i = 0; i < 100; i++){
-			int x = rand.nextInt(255)-127;
-			int y = rand.nextInt(255)-127;
-			int binSum = binToInt(multiply(x, y));
-			if((x*y)==binSum)
-			{
-				count++;
-			}
-			else
-			{
-				break;
-			}
-		}
-		System.out.println("\n\n" + "Total successes: " + count + "/100");
-		
-	}
 	
 	public static int binToInt(String bin)
 	{
@@ -70,9 +45,12 @@ public class BoothAlgorithm {
 		//begins the eight iterations
 		for(int i = 0; i < 8; i++)
 		{
+			//**use this stuff for tabular formatting**
 			System.out.println("Iteration: " + (i+1));
+			//performs the addition or subtraction
 			product = initialOperation(product, mcand);
 			System.out.println("           Post mcand operation: " + product);
+			//shifts product
 			product = aShiftRight(product);
 			System.out.println("           Post shift: " + product);
 		}
