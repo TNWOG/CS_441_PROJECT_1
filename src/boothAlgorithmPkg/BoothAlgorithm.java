@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 public class BoothAlgorithm  {
 	
 	
+	
 	public static int binToInt(String bin)
 	{
 		int sum = 0;
@@ -48,27 +49,45 @@ public class BoothAlgorithm  {
 		//begins the eight iterations
 		for(int i = 0; i < 8; i++)
 		{
+			String operation = getOperation(product);
 			//**use this stuff for tabular formatting**
-			System.out.println("Iteration: " + (i+1));
 			//performs the addition or subtraction
 			product = initialOperation(product, mcand);
-			System.out.println("           Post mcand operation: " + product);
 			//shifts product
 			product = aShiftRight(product);
-			System.out.println("           Post shift: " + product);
 			
 			//ZANE'S MAGIC w/ CODING GURU **the quotations are for the items which idk where you established items**
-			Table_Group_Project.fillData(i, "", mcand, product, binToInt(product));
+			Table_Group_Project.fillData(i, operation, mcand, product, binToInt(product));
 		}
 		product = product.substring(0, product.length()-1);
 		
 		//to get the table to get to the end result
-		Table_Group_Project.fillData(8, "", mcand, product, binToInt(product));
+		Table_Group_Project.fillData(8, "Result" , mcand, product, binToInt(product));
 		
 		System.out.println("\n" + "Product in Binary: " + product);
 		System.out.println("Product in Decimal: " + binToInt(product));
 		return product;
 	}
+	
+	private static String getOperation(String product)
+	{
+		String operationBit = product.substring(product.length()-2);
+		
+		if(operationBit.equals("00")||operationBit.equals("11"))
+		{
+			return "NO OP";
+		}
+		if(operationBit.equals("01"))
+		{
+			return "PROD + MCAND";
+		}
+		if(operationBit.equals("10"))
+		{
+			return "PROD - MCAND";
+		}
+		return "fail";
+	}
+	
 	//originally private
 	private static String initialOperation(String product, String mcand)
 	{
