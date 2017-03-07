@@ -3,8 +3,11 @@ package boothAlgorithmPkg;
 
 import java.math.*;
 import java.util.Random;
+import java.util.Scanner;
+import javax.swing.JPanel;
 
-public class BoothAlgorithm {
+
+public class BoothAlgorithm  {
 	
 	
 	public static int binToInt(String bin)
@@ -53,13 +56,20 @@ public class BoothAlgorithm {
 			//shifts product
 			product = aShiftRight(product);
 			System.out.println("           Post shift: " + product);
+			
+			//ZANE'S MAGIC w/ CODING GURU **the quotations are for the items which idk where you established items**
+			Table_Group_Project.fillData(i, "", mcand, product, binToInt(product));
 		}
 		product = product.substring(0, product.length()-1);
+		
+		//to get the table to get to the end result
+		Table_Group_Project.fillData(8, "", mcand, product, binToInt(product));
+		
 		System.out.println("\n" + "Product in Binary: " + product);
 		System.out.println("Product in Decimal: " + binToInt(product));
 		return product;
 	}
-	
+	//originally private
 	private static String initialOperation(String product, String mcand)
 	{
 		String operationBit = product.substring(product.length()-2);
